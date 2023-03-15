@@ -37,7 +37,7 @@
 		logger는 로그 레벨을 가지고 있으며, 로그의 출력 여부는 로그문의 레벨과 로거의 레벨을 가지고 결정합니다 -->
 	<!-- Application Loggers -->
 	<logger name="com.myspring.pro27">
-		<level value="trace" />
+		<level value="info" />
 	</logger>
 
 	<!-- FATAL : 시스템 차원에서 심각한 문제가 발생해 애플리케이션 작동이 불가능할 경우에 해당하는 레벨입니다. 일반적으로 
@@ -48,24 +48,24 @@
 
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
-		<level value="trace" />
+		<level value="info" />
 	</logger>
 
 	<logger name="org.springframework.beans">
-		<level value="trace" />
+		<level value="info" />
 	</logger>
 
 	<logger name="org.springframework.context">
-		<level value="trace" />
+		<level value="info" />
 	</logger>
 
 	<logger name="org.springframework.web">
-		<level value="trace" />
+		<level value="info" />
 	</logger>
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="trace" />
+		<priority value="debug" />
 		<appender-ref ref="console" />
 		<appender-ref ref="dailyFileAppender" />
 	</root>
