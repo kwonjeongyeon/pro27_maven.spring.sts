@@ -49,8 +49,12 @@
 
 
 
-	<!-- <mvc:interceptors> <mvc:interceptor> <mvc:mapping path="/*/*.do" /> 
-		<beans:bean class="com.myspring.pro27.member.interceptor.ViewNameInterceptor"></beans:bean> 
-		</mvc:interceptor> </mvc:interceptors> -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*/*.do" />
+			<beans:bean
+				class="com.myspring.pro27.member.interceptor.ViewNameInterceptor"></beans:bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 </beans:beans>

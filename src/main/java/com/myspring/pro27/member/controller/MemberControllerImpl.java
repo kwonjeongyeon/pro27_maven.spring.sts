@@ -27,7 +27,8 @@ public class MemberControllerImpl implements MemberController {
 
 	/*
 	 * Marks a constructor, field, setter method, or config method as to be
-	 * autowired by Spring's dependency injection facilities.
+	 * autowired by Spring's dependency injection facilities. 생성자, 필드, 셋터 메서드, 메서드
+	 * 설정에 의존성 주입함
 	 */
 
 	@Autowired
@@ -44,9 +45,10 @@ public class MemberControllerImpl implements MemberController {
 	@Override
 	@RequestMapping(value = "/member/listMembers.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView listMembers(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String viewName = getViewName(request);
+		// String viewName = getViewName(request);
+		String viewName = (String) request.getAttribute("viewName");
 		// System.out.println(viewName);
-		logger.info("viewName: " + viewName);
+		// logger.info("viewName: " + viewName);
 		logger.debug("viewName: " + viewName);
 		List<MemberVO> membersList = memberService.listMembers();
 		ModelAndView mav = new ModelAndView(viewName);
@@ -54,42 +56,42 @@ public class MemberControllerImpl implements MemberController {
 		return mav;
 	}
 
-	private String getViewName(HttpServletRequest request) {
-		String contextPath = request.getContextPath();
-		System.out.println(contextPath);
-		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
-		if (uri == null || uri.trim().equals("")) {
-			uri = request.getRequestURI();
-		}
-		System.out.println(uri);
-
-		int begin = 0;
-		if (!((contextPath == null) || ("".equals(contextPath)))) {
-			begin = contextPath.length();
-		}
-		System.out.println(begin);
-		int end;
-		if (uri.indexOf(";") != -1) {
-			end = uri.indexOf(";");
-		} else if (uri.indexOf("?") != -1) {
-			end = uri.indexOf("?");
-		} else {
-			end = uri.length();
-		}
-		System.out.println(end);
-
-		String viewName = uri.substring(begin, end);
-		System.out.println(viewName);
-		if (viewName.indexOf(".") != -1) {
-			viewName = viewName.substring(0, viewName.lastIndexOf("."));
-			System.out.println(viewName);
-		}
-		if (viewName.lastIndexOf("/") != -1) {
-			viewName = viewName.substring(viewName.lastIndexOf("/", 1), viewName.length());
-			System.out.println(viewName);
-		}
-		return viewName;
-	}
+//	private String getViewName(HttpServletRequest request) {
+//		String contextPath = request.getContextPath();
+//		System.out.println(contextPath);
+//		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
+//		if (uri == null || uri.trim().equals("")) {
+//			uri = request.getRequestURI();
+//		}
+//		System.out.println(uri);
+//
+//		int begin = 0;
+//		if (!((contextPath == null) || ("".equals(contextPath)))) {
+//			begin = contextPath.length();
+//		}
+//		System.out.println(begin);
+//		int end;
+//		if (uri.indexOf(";") != -1) {
+//			end = uri.indexOf(";");
+//		} else if (uri.indexOf("?") != -1) {
+//			end = uri.indexOf("?");
+//		} else {
+//			end = uri.length();
+//		}
+//		System.out.println(end);
+//
+//		String viewName = uri.substring(begin, end);
+//		System.out.println(viewName);
+//		if (viewName.indexOf(".") != -1) {
+//			viewName = viewName.substring(0, viewName.lastIndexOf("."));
+//			System.out.println(viewName);
+//		}
+//		if (viewName.lastIndexOf("/") != -1) {
+//			viewName = viewName.substring(viewName.lastIndexOf("/", 1), viewName.length());
+//			System.out.println(viewName);
+//		}
+//		return viewName;
+//	}
 
 	@Override
 	@RequestMapping(value = "/member/addMember.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -117,7 +119,8 @@ public class MemberControllerImpl implements MemberController {
 
 	@RequestMapping(value = "/member/*Form.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView form(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String viewName = getViewName(request);
+		// String viewName = getViewName(request);
+		String viewName = (String) request.getAttribute("viewName");
 		logger.debug("viewName: " + viewName);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
