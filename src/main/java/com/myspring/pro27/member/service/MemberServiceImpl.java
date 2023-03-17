@@ -39,5 +39,10 @@ public class MemberServiceImpl implements MemberService {
 	public int deleteMember(String id) throws DataAccessException {
 		return memberDAO.deleteMember(id);
 	}
+	
+	@Override
+	public MemberVO login(MemberVO memberVO) throws Exception{
+		return memberDAO.loginById(memberVO);
+	}
 
 }
